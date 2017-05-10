@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.4</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Domain\Domain\Domain.csproj" />
+    <ProjectReference Include="..\Domain\Interfaces\Interfaces.csproj" />
+  </ItemGroup>
+
+ <ItemGroup>
+    <PackageReference Include="System.ComponentModel.Annotations" Version="4.3.0" />
+ </ItemGroup>
+
+</Project>
