@@ -1,0 +1,6 @@
+C:\Git\dotnet-core\back-end\src\Middleware\Provider\bin\Debug\netstandard1.4\SimpleTokenProvider.deps.json
+C:\Git\dotnet-core\back-end\src\Middleware\Provider\bin\Debug\netstandard1.4\SimpleTokenProvider.dll
+C:\Git\dotnet-core\back-end\src\Middleware\Provider\bin\Debug\netstandard1.4\SimpleTokenProvider.pdb
+C:\Git\dotnet-core\back-end\src\Middleware\Provider\obj\Debug\netstandard1.4\Provider.AssemblyInfo.cs
+C:\Git\dotnet-core\back-end\src\Middleware\Provider\obj\Debug\netstandard1.4\SimpleTokenProvider.dll
+C:\Git\dotnet-core\back-end\src\Middleware\Provider\obj\Debug\netstandard1.4\SimpleTokenProvider.pdb
