@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http.Authentication;
 using Microsoft.IdentityModel.Tokens;
 
-namespace Test
+namespace Api
 {
     public class CustomJwtDataFormat : ISecureDataFormat<AuthenticationTicket>
     {

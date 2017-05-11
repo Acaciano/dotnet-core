@@ -1,6 +1,6 @@
 using System;
 
-namespace Middleware.Test.Models
+namespace Middleware.Api.Models
 {
     public class UserModel
     {

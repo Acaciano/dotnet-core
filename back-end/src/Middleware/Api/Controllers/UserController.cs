@@ -8,9 +8,9 @@ using Domain.Entities;
 using Infrastructure.CrossCutting.ExtensionMethods;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Middleware.Test.Models;
+using Middleware.Api.Models;
 
-namespace Middleware.Test.Controllers
+namespace Middleware.Api.Controllers
 {
     [Route("api/[controller]")]
     [Authorize]

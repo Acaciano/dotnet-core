@@ -13,7 +13,7 @@ using Newtonsoft.Json;
 using System.Buffers;
 using Infrastructure.CrossCutting.Configuration;
 
-namespace Test
+namespace Api
 {
   public partial class Startup
   {

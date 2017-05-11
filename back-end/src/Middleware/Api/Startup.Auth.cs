@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.IdentityModel.Tokens;
 using TokenProvider;
 
-namespace Test
+namespace Api
 {
     public partial class Startup
     {
