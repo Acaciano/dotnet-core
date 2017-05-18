@@ -11,6 +11,7 @@
 
  <ItemGroup>
     <PackageReference Include="System.ComponentModel.Annotations" Version="4.3.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="10.0.2" />
  </ItemGroup>
 
 </Project>

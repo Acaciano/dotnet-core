@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Application.Interface.Application;
 using Application.Validation;
+using Application.ViewModels;
 using Domain.Entities;
 using Infrastructure.CrossCutting.ExtensionMethods;
 using Microsoft.AspNetCore.Authorization;
@@ -27,8 +28,7 @@ namespace Middleware.Api.Controllers
         public IActionResult Get()
         {
             List<User> users = _userApplication.GetAll().ToList();
-
-            return Ok(users);
+            return Ok(Models.ResultDataSuccess<List<UserViewModel>>.Ok(AutoMapperExtensionMethods<UserViewModel>.Map(users)));
         }
 
         [HttpPost]
