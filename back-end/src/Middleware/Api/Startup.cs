@@ -42,6 +42,7 @@ namespace Api
         });
 
         Configuration.ConnectionString = _configuration.GetConnectionString("DataAccessMySqlProvider");
+        Configuration.TokenKey = _configuration.GetValue<string>("TokenKey");
 
         RegisterServices(services);
     }

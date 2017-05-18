@@ -11,22 +11,11 @@ namespace Api
 {
     public partial class Startup
     {
-        // The secret key every token will be signed with.
-        // Keep this safe on the server!
-        private static readonly string secretKey = "mysupersecret_secretkey!123";
+        private static readonly string secretKey = "d71a5f83-8132-4c50-acd0-96ed6ebbf61d";
 
         private void ConfigureAuth(IApplicationBuilder app)
         {
-            var signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(secretKey));
-
-            app.UseSimpleTokenProvider(new TokenProviderOptions
-            {
-                Path = "/api/token",
-                Audience = "ExampleAudience",
-                Issuer = "ExampleIssuer",
-                SigningCredentials = new SigningCredentials(signingKey, SecurityAlgorithms.HmacSha256),
-                IdentityResolver = GetIdentity
-            });
+            var signingKey = new SymmetricSecurityKey(ASCIIEncoding.ASCII.GetBytes(secretKey));
 
             var tokenValidationParameters = new TokenValidationParameters
             {
@@ -48,6 +37,15 @@ namespace Api
                 // If you want to allow a certain amount of clock drift, set that here:
                 ClockSkew = TimeSpan.Zero
             };
+
+            app.UseSimpleTokenProvider(new TokenProviderOptions
+            {
+                Path = "/api/token",
+                Audience = "ExampleAudience",
+                Issuer = "ExampleIssuer",
+                SigningCredentials = new SigningCredentials(signingKey, SecurityAlgorithms.HmacSha256),
+                IdentityResolver = GetIdentity
+            }, tokenValidationParameters);
 
             app.UseJwtBearerAuthentication(new JwtBearerOptions
             {

@@ -2,9 +2,9 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp1.1</TargetFramework>
-    <AssemblyName>SimpleTokenProvider.Test</AssemblyName>
+    <AssemblyName>Api</AssemblyName>
     <OutputType>Exe</OutputType>
-    <PackageId>SimpleTokenProvider.Test</PackageId>
+    <PackageId>Api</PackageId>
   </PropertyGroup>
 
   <ItemGroup>
