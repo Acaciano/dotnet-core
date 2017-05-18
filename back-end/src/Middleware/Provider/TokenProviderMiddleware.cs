@@ -8,7 +8,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
+using Infrastructure.CrossCutting.Configuration;
 
 namespace TokenProvider
 {
@@ -22,16 +24,19 @@ namespace TokenProvider
     {
         private readonly RequestDelegate _next;
         private readonly TokenProviderOptions _options;
+        private readonly TokenValidationParameters _tokenValidationParameters;
         private readonly ILogger _logger;
         private readonly JsonSerializerSettings _serializerSettings;
 
         public TokenProviderMiddleware(
             RequestDelegate next,
             IOptions<TokenProviderOptions> options,
+            TokenValidationParameters tokenValidationParameters,
             ILoggerFactory loggerFactory)
         {
             _next = next;
             _logger = loggerFactory.CreateLogger<TokenProviderMiddleware>();
+            _tokenValidationParameters = tokenValidationParameters;
 
             _options = options.Value;
             ThrowIfInvalidOptions(_options);
@@ -65,9 +70,32 @@ namespace TokenProvider
 
         private async Task GenerateToken(HttpContext context)
         {
+            var grantType = context.Request.Form["grant_type"];
             var username = context.Request.Form["username"];
             var password = context.Request.Form["password"];
+            string key = context.Request.Headers["Authorization"];
 
+            if(!string.IsNullOrEmpty(key))
+            {
+                int firstSpace = key.IndexOf(" ");
+                key = key.Substring(firstSpace + 1);
+            }
+            
+            if (grantType != GrantType.Basic)
+            {
+                context.Response.StatusCode = 400;
+                await context.Response.WriteAsync("Invalid grantType.");
+                return;
+            }   
+
+            //Basic btoa("CaixaMaisVantagensLTM")
+            if (key != Configuration.TokenKey)
+            {
+                context.Response.StatusCode = 400;
+                await context.Response.WriteAsync("Authorization basic invalid value.");
+                return;
+            }
+                
             var identity = await _options.IdentityResolver(username, password);
             if (identity == null)
             {
@@ -152,5 +180,10 @@ namespace TokenProvider
         /// <param name="date">The date to convert.</param>
         /// <returns>Seconds since Unix epoch.</returns>
         public static long ToUnixEpochDate(DateTime date) => new DateTimeOffset(date).ToUniversalTime().ToUnixTimeSeconds();
+    }
+
+    public static class GrantType
+    {
+        public static string Basic { get; set; } = "basic";
     }
 }

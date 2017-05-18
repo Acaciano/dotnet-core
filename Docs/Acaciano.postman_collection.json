@@ -1,0 +1,78 @@
+{
+	"id": "43cf4296-01a8-3bfe-13bc-bc49a0705faa",
+	"name": "Acaciano",
+	"description": "",
+	"order": [
+		"6720996a-3f93-23f6-fa0d-afdf076d6d74",
+		"d34ea4db-ad74-6da0-ec5a-cb1812ed963f"
+	],
+	"folders": [],
+	"timestamp": 0,
+	"owner": 0,
+	"public": false,
+	"requests": [
+		{
+			"id": "6720996a-3f93-23f6-fa0d-afdf076d6d74",
+			"headers": "Content-Type: application/x-www-form-urlencoded\nAuthorization: Basic Q2FpeGFNYWlzVmFudGFnZW5zTFRN\n",
+			"url": "http://localhost:5000/api/token",
+			"preRequestScript": null,
+			"pathVariables": {},
+			"method": "POST",
+			"data": [
+				{
+					"key": "username",
+					"value": "TEST",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "TEST123",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "grant_type",
+					"value": "basic",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "Auth",
+					"value": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1495124052103,
+			"name": "http://localhost:5000/api/token",
+			"description": "",
+			"collectionId": "43cf4296-01a8-3bfe-13bc-bc49a0705faa",
+			"responses": []
+		},
+		{
+			"id": "d34ea4db-ad74-6da0-ec5a-cb1812ed963f",
+			"headers": "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJURVNUIiwianRpIjoiM2U1NzUwMzktNmVhOC00MzUwLWE4OTEtNmMxYTc1ZjFhNmNkIiwiaWF0IjoxNDk1MTA3Nzg0LCJuYmYiOjE0OTUxMDc3ODQsImV4cCI6MTQ5NTEwODA4NCwiaXNzIjoiRXhhbXBsZUlzc3VlciIsImF1ZCI6IkV4YW1wbGVBdWRpZW5jZSJ9.zojw9ba1mRZdlAT3sLejuz8BU3sgwa47GBnX4Yf_c8g\n",
+			"url": "http://localhost:5000/api/user",
+			"preRequestScript": null,
+			"pathVariables": {},
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1495123989978,
+			"name": "http://localhost:5000/api/GET",
+			"description": "",
+			"collectionId": "43cf4296-01a8-3bfe-13bc-bc49a0705faa",
+			"responses": []
+		}
+	]
+}

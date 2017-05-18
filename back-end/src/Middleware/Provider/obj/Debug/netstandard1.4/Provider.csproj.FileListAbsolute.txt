@@ -10,3 +10,11 @@ C:/Git/dotnet-core/back-end/src/Middleware/Provider/obj/Debug/netstandard1.4/Sim
 /home/acaciano/git/dotnet-core/back-end/src/Middleware/Provider/obj/Debug/netstandard1.4/Provider.AssemblyInfo.cs
 /home/acaciano/git/dotnet-core/back-end/src/Middleware/Provider/obj/Debug/netstandard1.4/SimpleTokenProvider.dll
 /home/acaciano/git/dotnet-core/back-end/src/Middleware/Provider/obj/Debug/netstandard1.4/SimpleTokenProvider.pdb
+C:\github\acaciano\dotnet-core\back-end\src\Middleware\Provider\bin\Debug\netstandard1.4\SimpleTokenProvider.deps.json
+C:\github\acaciano\dotnet-core\back-end\src\Middleware\Provider\bin\Debug\netstandard1.4\SimpleTokenProvider.dll
+C:\github\acaciano\dotnet-core\back-end\src\Middleware\Provider\bin\Debug\netstandard1.4\SimpleTokenProvider.pdb
+C:\github\acaciano\dotnet-core\back-end\src\Middleware\Provider\obj\Debug\netstandard1.4\Provider.AssemblyInfo.cs
+C:\github\acaciano\dotnet-core\back-end\src\Middleware\Provider\obj\Debug\netstandard1.4\SimpleTokenProvider.dll
+C:\github\acaciano\dotnet-core\back-end\src\Middleware\Provider\obj\Debug\netstandard1.4\SimpleTokenProvider.pdb
+c:\github\acaciano\dotnet-core\back-end\src\Middleware\Provider\bin\Debug\netstandard1.4\CrossCutting.dll
+c:\github\acaciano\dotnet-core\back-end\src\Middleware\Provider\bin\Debug\netstandard1.4\CrossCutting.pdb

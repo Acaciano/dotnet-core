@@ -2,14 +2,17 @@
 
 Projeto DotNetCore com API e Token 
 
-Compilação
+<h1>Compilação</h1> 
 
-cd C:\github\acaciano\dotnet-core\back-end\src\Middleware\Api
-dotnet restore
-dotnet build
+<p>
+cd C:\github\acaciano\dotnet-core\back-end\src\Middleware\Api <br />
+dotnet restore <br />
+dotnet build <br />
 code .
-
-Visual Studio Code
---Tab Debug (.NET Core Launch (web))
+</p>
+<p>
+Visual Studio Code <br />
+--Tab Debug (.NET Core Launch (web)) <br />
 --Play
+</p>
 
