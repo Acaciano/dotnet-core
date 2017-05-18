@@ -8,9 +8,7 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace TokenProvider
 {
-    /// <summary>
-    /// Adds a token generation endpoint to an application pipeline.
-    /// </summary>
+    
     public static class TokenProviderAppBuilderExtensions
     {
         public static IApplicationBuilder UseSimpleTokenProvider(this IApplicationBuilder app, TokenProviderOptions options, TokenValidationParameters tokenValidationParameters)

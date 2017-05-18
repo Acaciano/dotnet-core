@@ -25,11 +25,11 @@ namespace Api
 
                 // Validate the JWT Issuer (iss) claim
                 ValidateIssuer = true,
-                ValidIssuer = "ExampleIssuer",
+                ValidIssuer = "Issuer",
 
                 // Validate the JWT Audience (aud) claim
                 ValidateAudience = true,
-                ValidAudience = "ExampleAudience",
+                ValidAudience = "Audience",
 
                 // Validate the token expiry
                 ValidateLifetime = true,
@@ -40,9 +40,10 @@ namespace Api
 
             app.UseSimpleTokenProvider(new TokenProviderOptions
             {
-                Path = "/api/token",
-                Audience = "ExampleAudience",
-                Issuer = "ExampleIssuer",
+                Path = "/token",
+                RefreshPath = "/refresh-token",
+                Audience = "Audience",
+                Issuer = "Issuer",
                 SigningCredentials = new SigningCredentials(signingKey, SecurityAlgorithms.HmacSha256),
                 IdentityResolver = GetIdentity
             }, tokenValidationParameters);

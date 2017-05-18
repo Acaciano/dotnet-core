@@ -14,12 +14,6 @@ using Infrastructure.CrossCutting.Configuration;
 
 namespace TokenProvider
 {
-    /// <summary>
-    /// Token generator middleware component which is added to an HTTP pipeline.
-    /// This class is not created by application code directly,
-    /// instead it is added by calling the <see cref="TokenProviderAppBuilderExtensions.UseSimpleTokenProvider(Microsoft.AspNetCore.Builder.IApplicationBuilder, TokenProviderOptions)"/>
-    /// extension method.
-    /// </summary>
     public class TokenProviderMiddleware
     {
         private readonly RequestDelegate _next;
@@ -49,8 +43,11 @@ namespace TokenProvider
 
         public Task Invoke(HttpContext context)
         {
+            bool isCreate = context.Request.Path.Equals(_options.Path, StringComparison.Ordinal);
+            bool isRefresh = !isCreate && context.Request.Path.Equals(_options.RefreshPath, StringComparison.Ordinal);
+           
             // If the request path doesn't match, skip
-            if (!context.Request.Path.Equals(_options.Path, StringComparison.Ordinal))
+            if (!isCreate && !isRefresh)
             {
                 return _next(context);
             }
@@ -63,9 +60,46 @@ namespace TokenProvider
                 return context.Response.WriteAsync("Bad request.");
             }
 
-            _logger.LogInformation("Handling request: " + context.Request.Path);
+            _logger.LogInformation($"Handling request for {(isCreate ? "create token": "refresh token")}: " + context.Request.Path);
 
-            return GenerateToken(context);
+            if (isCreate)
+            {
+                return GenerateToken(context);
+            }
+            else
+            {
+                return IssueRefreshedToken(context);
+            }
+        }
+
+        private Task IssueRefreshedToken(HttpContext context)
+        {
+            try
+            {
+                string authenticationText = context.Request.Headers["Authorization"].ToString();
+                int firstSpace = authenticationText.IndexOf(" ");
+                string tokenText = authenticationText.Substring(firstSpace + 1);
+
+                var jwtSecurityTokenHandler = new JwtSecurityTokenHandler();
+                SecurityToken originalToken;
+               
+                var claimsi = jwtSecurityTokenHandler.ValidateToken(tokenText, _tokenValidationParameters, out originalToken);
+                var now = DateTime.UtcNow;
+                
+                var jwt = new JwtSecurityToken(
+                 issuer: _options.Issuer,
+                 audience: _options.Audience,
+                 claims: ((JwtSecurityToken)originalToken).Claims,
+                 notBefore: now,
+                 expires: now.Add(_options.Expiration),
+                 signingCredentials: _options.SigningCredentials);
+                return WriteTokenResponse(context, jwt);
+            }
+            catch
+            {
+                context.Response.StatusCode = 400;
+                return context.Response.WriteAsync("Bad request or invalid token.");
+            }
         }
 
         private async Task GenerateToken(HttpContext context)
@@ -136,6 +170,21 @@ namespace TokenProvider
             await context.Response.WriteAsync(JsonConvert.SerializeObject(response, _serializerSettings));
         }
 
+        private async Task WriteTokenResponse(HttpContext context, JwtSecurityToken jwt)
+        {
+            var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
+
+            var response = new
+            {
+                access_token = encodedJwt,
+                expires_in = (int)_options.Expiration.TotalSeconds
+            };
+
+            // Serialize and return the response
+            context.Response.ContentType = "application/json";
+            await context.Response.WriteAsync(JsonConvert.SerializeObject(response, _serializerSettings));
+        }
+
         private static void ThrowIfInvalidOptions(TokenProviderOptions options)
         {
             if (string.IsNullOrEmpty(options.Path))
@@ -174,11 +223,6 @@ namespace TokenProvider
             }
         }
 
-        /// <summary>
-        /// Get this datetime as a Unix epoch timestamp (seconds since Jan 1, 1970, midnight UTC).
-        /// </summary>
-        /// <param name="date">The date to convert.</param>
-        /// <returns>Seconds since Unix epoch.</returns>
         public static long ToUnixEpochDate(DateTime date) => new DateTimeOffset(date).ToUniversalTime().ToUnixTimeSeconds();
     }
 
