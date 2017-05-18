@@ -7,14 +7,6 @@ C:/github/acaciano/dotnet-core/back-end/src/Middleware/Provider/obj/Debug/netsta
 C:/github/acaciano/dotnet-core/back-end/src/Middleware/Provider/obj/Debug/netstandard1.4/SimpleTokenProvider.pdb
 c:/github/acaciano/dotnet-core/back-end/src/Middleware/Provider/bin/Debug/netstandard1.4/CrossCutting.dll
 c:/github/acaciano/dotnet-core/back-end/src/Middleware/Provider/bin/Debug/netstandard1.4/CrossCutting.pdb
-C:/Git/dotnet-core/back-end/src/Middleware/Provider/bin/Debug/netstandard1.4/CrossCutting.dll
-C:/Git/dotnet-core/back-end/src/Middleware/Provider/bin/Debug/netstandard1.4/CrossCutting.pdb
-C:/Git/dotnet-core/back-end/src/Middleware/Provider/obj/Debug/netstandard1.4/Provider.AssemblyInfo.cs
-C:/Git/dotnet-core/back-end/src/Middleware/Provider/bin/Debug/netstandard1.4/TokenProvider.deps.json
-C:/Git/dotnet-core/back-end/src/Middleware/Provider/bin/Debug/netstandard1.4/TokenProvider.dll
-C:/Git/dotnet-core/back-end/src/Middleware/Provider/bin/Debug/netstandard1.4/TokenProvider.pdb
-C:/Git/dotnet-core/back-end/src/Middleware/Provider/obj/Debug/netstandard1.4/TokenProvider.dll
-C:/Git/dotnet-core/back-end/src/Middleware/Provider/obj/Debug/netstandard1.4/TokenProvider.pdb
 /home/acaciano/git/dotnet-core/back-end/src/Middleware/Provider/bin/Debug/netstandard1.4/TokenProvider.deps.json
 /home/acaciano/git/dotnet-core/back-end/src/Middleware/Provider/bin/Debug/netstandard1.4/TokenProvider.dll
 /home/acaciano/git/dotnet-core/back-end/src/Middleware/Provider/bin/Debug/netstandard1.4/TokenProvider.pdb
@@ -22,3 +14,11 @@ C:/Git/dotnet-core/back-end/src/Middleware/Provider/obj/Debug/netstandard1.4/Tok
 /home/acaciano/git/dotnet-core/back-end/src/Middleware/Provider/bin/Debug/netstandard1.4/CrossCutting.pdb
 /home/acaciano/git/dotnet-core/back-end/src/Middleware/Provider/obj/Debug/netstandard1.4/TokenProvider.dll
 /home/acaciano/git/dotnet-core/back-end/src/Middleware/Provider/obj/Debug/netstandard1.4/TokenProvider.pdb
+C:\git\dotnet-core\back-end\src\Middleware\Provider\bin\Debug\netstandard1.4\TokenProvider.deps.json
+C:\git\dotnet-core\back-end\src\Middleware\Provider\bin\Debug\netstandard1.4\TokenProvider.dll
+C:\git\dotnet-core\back-end\src\Middleware\Provider\bin\Debug\netstandard1.4\TokenProvider.pdb
+C:\git\dotnet-core\back-end\src\Middleware\Provider\bin\Debug\netstandard1.4\CrossCutting.dll
+C:\git\dotnet-core\back-end\src\Middleware\Provider\bin\Debug\netstandard1.4\CrossCutting.pdb
+C:\git\dotnet-core\back-end\src\Middleware\Provider\obj\Debug\netstandard1.4\Provider.AssemblyInfo.cs
+C:\git\dotnet-core\back-end\src\Middleware\Provider\obj\Debug\netstandard1.4\TokenProvider.dll
+C:\git\dotnet-core\back-end\src\Middleware\Provider\obj\Debug\netstandard1.4\TokenProvider.pdb

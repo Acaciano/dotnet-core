@@ -1,20 +1,23 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Application.Interface.Application;
 using Application.Validation;
 using Application.ViewModels;
 using Domain.Entities;
 using Infrastructure.CrossCutting.ExtensionMethods;
+using Infrastructure.CrossCutting.Helper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Middleware.Api.Models;
 
 namespace Middleware.Api.Controllers
 {
     [Route("api/[controller]")]
     [Authorize]
-    public class UserController : Controller
+    public class UserController : ApiBaseController
     {
         private readonly IUserApplication _userApplication;
         
@@ -23,11 +26,35 @@ namespace Middleware.Api.Controllers
             _userApplication = userApplication;
         }
 
-        [HttpGet]
-        public IActionResult Get()
+        [Route("{id}"), HttpGet]
+        public IActionResult Get(string id)
         {
-            List<User> users = _userApplication.GetAll().ToList();
-            return Ok(Models.ResultDataSuccess<List<UserViewModel>>.Ok(AutoMapperExtensionMethods<UserViewModel>.Map(users)));
+            try
+            {
+                List<User> users = null;
+
+                if(id == "me")
+                {
+                    Claim claim = GetClaims("UserId");
+                    User user = _userApplication.GetById(claim.Value.TryParseGuid());
+
+                    if(user != null)
+                    {
+                        users = new List<User>();
+                        users.Add(user);
+                    }
+                }
+                else
+                {
+                    users = _userApplication.GetAll().ToList();
+                }
+
+               return Ok(ResultDataSuccess<List<UserViewModel>>.Ok(AutoMapperExtensionMethods<UserViewModel>.Map(users)));
+            }
+            catch (Exception exception)
+            {
+                return Ok(ResultData.Error(exception));
+            }
         }
 
         [HttpPost]
