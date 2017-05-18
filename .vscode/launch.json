@@ -10,7 +10,7 @@
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceRoot}/back-end/src/Middleware/Api/bin/Debug/netcoreapp1.0/Api.dll",
+            "program": "${workspaceRoot}/back-end/src/Middleware/Api/bin/Debug/netcoreapp1.1/Api.dll",
             "args": [],
             "cwd": "${workspaceRoot}/back-end/src/Middleware/Api",
             "stopAtEntry": false,
