@@ -4,8 +4,8 @@
     <Description>Simple authentication token provider for ASP.NET Core.</Description>
     <Authors>Nate Barbettini</Authors>
     <TargetFramework>netstandard1.4</TargetFramework>
-    <AssemblyName>SimpleTokenProvider</AssemblyName>
-    <PackageId>SimpleTokenProvider</PackageId>
+    <AssemblyName>TokenProvider</AssemblyName>
+    <PackageId>TokenProvider</PackageId>
     <PackageTags>token;authentication;security;jwt</PackageTags>
   </PropertyGroup>
 

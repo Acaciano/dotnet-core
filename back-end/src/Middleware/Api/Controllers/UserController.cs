@@ -9,7 +9,6 @@ using Domain.Entities;
 using Infrastructure.CrossCutting.ExtensionMethods;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Middleware.Api.Models;
 
 namespace Middleware.Api.Controllers
 {
@@ -32,13 +31,13 @@ namespace Middleware.Api.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody]UserModel model)
+        public IActionResult Post([FromBody]UserViewModel model)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    User user = AutoMapperExtensionMethods<User>.Map<UserModel>(model);
+                    User user = AutoMapperExtensionMethods<User>.Map<UserViewModel>(model);
                     user.Active = true;
 
                     UserCode userCode = new UserCode();
@@ -65,7 +64,7 @@ namespace Middleware.Api.Controllers
         }
 
         [Route("{id}"), HttpPut]
-        public IActionResult Put(Guid id, [FromBody]UserModel model)
+        public IActionResult Put(Guid id, [FromBody]UserViewModel model)
         {
             try
             {

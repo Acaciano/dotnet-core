@@ -8,6 +8,6 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyDescriptionAttribute("Simple authentication token provider for ASP.NET Core.")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
-[assembly: System.Reflection.AssemblyProductAttribute("SimpleTokenProvider")]
-[assembly: System.Reflection.AssemblyTitleAttribute("SimpleTokenProvider")]
+[assembly: System.Reflection.AssemblyProductAttribute("TokenProvider")]
+[assembly: System.Reflection.AssemblyTitleAttribute("TokenProvider")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
