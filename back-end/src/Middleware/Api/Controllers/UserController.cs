@@ -26,28 +26,12 @@ namespace Middleware.Api.Controllers
             _userApplication = userApplication;
         }
 
-        [Route("{id}"), HttpGet]
-        public IActionResult Get(string id)
+        [HttpGet]
+        public IActionResult Get()
         {
             try
             {
-                List<User> users = null;
-
-                if(id == "me")
-                {
-                    Claim claim = GetClaims("UserId");
-                    User user = _userApplication.GetById(claim.Value.TryParseGuid());
-
-                    if(user != null)
-                    {
-                        users = new List<User>();
-                        users.Add(user);
-                    }
-                }
-                else
-                {
-                    users = _userApplication.GetAll().ToList();
-                }
+               List<User> users = _userApplication.GetAll().ToList();
 
                return Ok(ResultDataSuccess<List<UserViewModel>>.Ok(AutoMapperExtensionMethods<UserViewModel>.Map(users)));
             }
