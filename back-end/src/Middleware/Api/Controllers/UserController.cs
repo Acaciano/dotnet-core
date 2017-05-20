@@ -46,25 +46,20 @@ namespace Middleware.Api.Controllers
         {
             try
             {
-                if (ModelState.IsValid)
-                {
-                    User user = AutoMapperExtensionMethods<User>.Map<UserViewModel>(model);
-                    user.Active = true;
+                User user = AutoMapperExtensionMethods<User>.Map<UserViewModel>(model);
+                user.Active = true;
 
-                    UserCode userCode = new UserCode();
+                UserCode userCode = new UserCode();
 
-                    userCode.Code = Guid.NewGuid();
-                    userCode.Active = true;
-                    
-                    user.UserCodes.Add(userCode);
+                userCode.Code = Guid.NewGuid();
+                userCode.Active = true;
+                
+                user.UserCodes.Add(userCode);
 
-                    ValidationAppResult validationAppResult = _userApplication.Add(user);
+                ValidationAppResult validationAppResult = _userApplication.Add(user);
 
-                    if (validationAppResult.IsValid)
-                        return Ok("Dados cadastrado com sucesso.");
-
-                    return Ok(validationAppResult.Erros);
-                }
+                if (validationAppResult.IsValid)
+                    return Ok("Dados cadastrado com sucesso.");
 
                 return Ok("Erro: Não foi possivel gravar o registro.");
             }
@@ -79,25 +74,20 @@ namespace Middleware.Api.Controllers
         {
             try
             {
-                if (ModelState.IsValid)
-                {
-                    User user = _userApplication.GetById(id);
+                User user = _userApplication.GetById(id);
                     
-                    if(user != null)
-                    {
-                        user.Name = model.Name;
-                        user.Email = model.Email;
-                        user.Password = model.Password;
+                if(user != null)
+                {
+                    user.Name = model.Name;
+                    user.Email = model.Email;
+                    user.Password = model.Password;
 
-                        _userApplication.Update(user);
-                        _userApplication.Commit();
+                    _userApplication.Update(user);
+                    _userApplication.Commit();
 
-                        return Ok("Dados atualizado com sucesso."); 
-                    }
-
-                    return Ok("Não foi possivel atualizar o registro."); 
+                    return Ok("Dados atualizado com sucesso."); 
                 }
-
+ 
                 return Ok("Erro: Não foi possivel atualizar o registro.");
             }
             catch (Exception exception)
@@ -106,7 +96,7 @@ namespace Middleware.Api.Controllers
             }
         }
 
-         [Route("{id}"), HttpDelete]
+        [Route("{id}"), HttpDelete]
         public IActionResult Delete(Guid id)
         {
             try

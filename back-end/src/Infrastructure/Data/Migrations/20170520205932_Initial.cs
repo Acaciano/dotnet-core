@@ -12,14 +12,13 @@ namespace Data.Migrations
                 name: "User",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(nullable: false)
-                        .Annotation("MySql:ValueGeneratedOnAdd", true),
-                    Active = table.Column<bool>(nullable: false),
-                    DateModified = table.Column<DateTime>(nullable: true),
+                    Id = table.Column<Guid>(nullable: false).Annotation("MySql:ValueGeneratedOnAdd", true),
                     Email = table.Column<string>(maxLength: 150, nullable: true),
                     Name = table.Column<string>(maxLength: 255, nullable: true),
                     Password = table.Column<string>(maxLength: 255, nullable: true),
-                    RegistrationDate = table.Column<DateTime>(nullable: false)
+                    Active = table.Column<bool>(nullable: false),
+                    RegistrationDate = table.Column<DateTime>(nullable: false),
+                    DateModified = table.Column<DateTime>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -30,13 +29,12 @@ namespace Data.Migrations
                 name: "UserCode",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(nullable: false)
-                        .Annotation("MySql:ValueGeneratedOnAdd", true),
-                    Active = table.Column<bool>(nullable: false),
+                    Id = table.Column<Guid>(nullable: false).Annotation("MySql:ValueGeneratedOnAdd", true),
+                    UserId = table.Column<Guid>(nullable: false),
                     Code = table.Column<Guid>(nullable: false),
-                    DateModified = table.Column<DateTime>(nullable: true),
+                    Active = table.Column<bool>(nullable: false),
                     RegistrationDate = table.Column<DateTime>(nullable: false),
-                    UserId = table.Column<Guid>(nullable: false)
+                    DateModified = table.Column<DateTime>(nullable: true)
                 },
                 constraints: table =>
                 {

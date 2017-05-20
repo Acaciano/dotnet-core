@@ -8,7 +8,7 @@ using Infrastructure.Data.Context;
 namespace Data.Migrations
 {
     [DbContext(typeof(AADbContext))]
-    [Migration("20170511110309_Initial")]
+    [Migration("20170520205932_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

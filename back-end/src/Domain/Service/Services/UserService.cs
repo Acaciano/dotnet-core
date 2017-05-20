@@ -7,6 +7,7 @@ using Domain.Interfaces.UnitOfWork;
 using Domain.Service.Services;
 using Domain.Validation;
 using Domain.Validation.User;
+using Infrastructure.CrossCutting.Encryption;
 
 namespace Domain.Service.Services
 {
@@ -42,6 +43,7 @@ namespace Domain.Service.Services
 
                     if (user.IsValid(new UserValidationAddOrUpdate(getByEmail,false)))
                     {
+                        user.Password = AdvancedEncryptionStandard.GetSha1Hash(user.Password);
                         _userRepository.Add(user);
                         return validationResult;
                     }
