@@ -44,6 +44,14 @@ namespace Domain.Service.Services
                     if (user.IsValid(new UserValidationAddOrUpdate(getByEmail,false)))
                     {
                         user.Password = AdvancedEncryptionStandard.GetSha1Hash(user.Password);
+                        user.Active = true;
+
+                        UserCode userCode = new UserCode();
+                        userCode.Code = Guid.NewGuid();
+                        userCode.Active = true;
+                        
+                        user.UserCodes.Add(userCode);
+
                         _userRepository.Add(user);
                         return validationResult;
                     }

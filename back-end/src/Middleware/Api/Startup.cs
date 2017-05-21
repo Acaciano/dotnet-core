@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Mvc.Formatters;
 using Newtonsoft.Json;
 using System.Buffers;
 using Infrastructure.CrossCutting.Configuration;
+using Middleware.Api.Filters;
 
 namespace Api
 {
@@ -32,13 +33,14 @@ namespace Api
     public void ConfigureServices(IServiceCollection services)
     {
         // Add framework services.
-
+        //options.Filters.Add(new CustomExceptionFilterAttribute());
         services.AddMvc(options =>
         {
             options.OutputFormatters.Clear();
             options.OutputFormatters.Add(new JsonOutputFormatter(new JsonSerializerSettings(){
                 ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
             }, ArrayPool<char>.Shared));
+            options.Filters.Add(new CustomExceptionFilterAttribute());
         });
 
         Configuration.ConnectionString = _configuration.GetConnectionString("DataAccessMySqlProvider");
