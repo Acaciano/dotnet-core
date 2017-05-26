@@ -1,12 +1,14 @@
 <Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0">
 
   <PropertyGroup>
-    <TargetFramework>netstandard1.4</TargetFramework>
+    <TargetFramework>netstandard1.6</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="CoreCompat.System.ComponentModel.Attributes" Version="4.2.3-rg" />
     <PackageReference Include="AutoMapper" Version="6.0.2" />
+    <PackageReference Include="StackExchange.Redis" Version="1.2.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="10.0.2" />
   </ItemGroup>
 
 </Project>
