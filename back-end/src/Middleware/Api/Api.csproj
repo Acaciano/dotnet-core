@@ -14,7 +14,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Provider\Provider.csproj" />
     <ProjectReference Include="..\..\Infrastructure\IoC\IoC.csproj" />
     <ProjectReference Include="..\..\Infrastructure\CrossCutting\CrossCutting.csproj" />
     <ProjectReference Include="..\..\Domain\Domain\Domain.csproj" />
@@ -35,6 +34,9 @@
     <PackageReference Include="Microsoft.Extensions.Logging" Version="1.1.1" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.1.1" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="1.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="1.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="1.1.1" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="5.1.3" />
   </ItemGroup>
 
 </Project>

@@ -3,9 +3,11 @@ using System.Security.Claims;
 using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
+using Application.Interface.Application;
+using Domain.Entities;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.IdentityModel.Tokens;
-using TokenProvider;
+using Middleware.Api.TokenProvider;
 
 namespace Api
 {
@@ -67,16 +69,14 @@ namespace Api
             });
         }
 
-        private Task<ClaimsIdentity> GetIdentity(string username, string password)
+        private Task<User> GetIdentity(IUserApplication userApplication, string username, string password)
         {
-            // Don't do this in production, obviously!
-            if (username == "TEST" && password == "TEST123")
-            {
-                return Task.FromResult(new ClaimsIdentity(new GenericIdentity(username, "Token"), new Claim[] { }));
-            }
+            User user = userApplication.Authenticate(username, password);
 
-            // Credentials are invalid, or account doesn't exist
-            return Task.FromResult<ClaimsIdentity>(null);
+            if (user == null)
+                return Task.FromResult<User>(null);
+
+            return Task.FromResult(user);
         }
     }
 }

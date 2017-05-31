@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 
-namespace TokenProvider
+namespace Middleware.Api.TokenProvider
 {
     
     public static class TokenProviderAppBuilderExtensions

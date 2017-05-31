@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Application.Interface.Application;
+using Domain.Entities;
 using Microsoft.IdentityModel.Tokens;
 
-namespace TokenProvider
+namespace Middleware.Api.TokenProvider
 {
     public class TokenProviderOptions
     {
@@ -14,7 +16,7 @@ namespace TokenProvider
         public TimeSpan Expiration { get; set; } = TimeSpan.FromMinutes(15);
         public TimeSpan ExpirationMobile { get; set; } = TimeSpan.FromDays(30);
         public SigningCredentials SigningCredentials { get; set; }
-        public Func<string, string, Task<ClaimsIdentity>> IdentityResolver { get; set; }
+        public Func<IUserApplication, string, string, Task<User>> IdentityResolver { get; set; }
         public Func<Task<string>> NonceGenerator { get; set; }
             = new Func<Task<string>>(() => Task.FromResult(Guid.NewGuid().ToString()));
     }

@@ -11,8 +11,11 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 using Infrastructure.CrossCutting.Configuration;
+using Application.Interface.Application;
+using Middleware.Api.Models;
+using System.Collections.Generic;
 
-namespace TokenProvider
+namespace Middleware.Api.TokenProvider
 {
     public class TokenProviderMiddleware
     {
@@ -21,16 +24,18 @@ namespace TokenProvider
         private readonly TokenValidationParameters _tokenValidationParameters;
         private readonly ILogger _logger;
         private readonly JsonSerializerSettings _serializerSettings;
+        private readonly IUserApplication _userApplication;
 
         public TokenProviderMiddleware(
             RequestDelegate next,
             IOptions<TokenProviderOptions> options,
             TokenValidationParameters tokenValidationParameters,
-            ILoggerFactory loggerFactory)
+            ILoggerFactory loggerFactory, IUserApplication userApplication)
         {
             _next = next;
             _logger = loggerFactory.CreateLogger<TokenProviderMiddleware>();
             _tokenValidationParameters = tokenValidationParameters;
+            _userApplication = userApplication;
 
             _options = options.Value;
             ThrowIfInvalidOptions(_options);
@@ -115,14 +120,13 @@ namespace TokenProvider
                 key = key.Substring(firstSpace + 1);
             }
             
-            if (grantType != GrantType.Basic)
+            if (grantType != GrantType.UserCredentials)
             {
                 context.Response.StatusCode = 400;
                 await context.Response.WriteAsync("Invalid grantType.");
                 return;
             }   
 
-            //Basic btoa("CaixaMaisVantagensLTM")
             if (key != Configuration.TokenKey)
             {
                 context.Response.StatusCode = 400;
@@ -130,7 +134,7 @@ namespace TokenProvider
                 return;
             }
                 
-            var identity = await _options.IdentityResolver(username, password);
+            var identity = await _options.IdentityResolver(_userApplication,username, password);
             if (identity == null)
             {
                 context.Response.StatusCode = 400;
@@ -140,15 +144,7 @@ namespace TokenProvider
 
             var now = DateTime.UtcNow;
 
-            // Specifically add the jti (nonce), iat (issued timestamp), and sub (subject/user) claims.
-            // You can add other claims here, if you want:
-            var claims = new Claim[]
-            {
-                new Claim(JwtRegisteredClaimNames.Sub, username),
-                new Claim(JwtRegisteredClaimNames.Jti, await _options.NonceGenerator()),
-                new Claim(JwtRegisteredClaimNames.Iat, ToUnixEpochDate(now).ToString(), ClaimValueTypes.Integer64),
-                new Claim("UserId","888e14f4-15ff-489a-9937-4a7cef5e455f")
-            };
+            List<Claim> claims = new ClaimModel(identity).Get();
 
             // Create the JWT and write it to a string
             var jwt = new JwtSecurityToken(
@@ -163,7 +159,7 @@ namespace TokenProvider
             var response = new
             {
                 access_token = encodedJwt,
-                expires_in = (int)_options.Expiration.TotalSeconds
+                expires_in = (int)_options.Expiration.TotalSeconds,
             };
 
             // Serialize and return the response
@@ -229,6 +225,6 @@ namespace TokenProvider
 
     public static class GrantType
     {
-        public static string Basic { get; set; } = "basic";
+        public static string UserCredentials { get; set; } = "user_credentials";
     }
 }
