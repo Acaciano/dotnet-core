@@ -1,8 +1,0 @@
-C:\git\dotnet-core\back-end\src\Middleware\Provider\bin\Debug\netstandard1.6\TokenProvider.deps.json
-C:\git\dotnet-core\back-end\src\Middleware\Provider\bin\Debug\netstandard1.6\TokenProvider.dll
-C:\git\dotnet-core\back-end\src\Middleware\Provider\bin\Debug\netstandard1.6\TokenProvider.pdb
-C:\git\dotnet-core\back-end\src\Middleware\Provider\bin\Debug\netstandard1.6\CrossCutting.dll
-C:\git\dotnet-core\back-end\src\Middleware\Provider\bin\Debug\netstandard1.6\CrossCutting.pdb
-C:\git\dotnet-core\back-end\src\Middleware\Provider\obj\Debug\netstandard1.6\Provider.AssemblyInfo.cs
-C:\git\dotnet-core\back-end\src\Middleware\Provider\obj\Debug\netstandard1.6\TokenProvider.dll
-C:\git\dotnet-core\back-end\src\Middleware\Provider\obj\Debug\netstandard1.6\TokenProvider.pdb
