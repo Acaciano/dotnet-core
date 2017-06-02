@@ -40,11 +40,9 @@ namespace Middleware.Api.Controllers
             ValidationAppResult validationAppResult = _userApplication.Add(user);
 
             if (validationAppResult.IsValid)
-            {
                 return Ok(ResultDataSuccess<string>.Ok("Dados cadastrado com sucesso."));
-            }
             
-            return Ok(ResultData.Error("Não foi possivel gravar o registro."));
+            return Ok(ResultDataError<List<ValidationAppError>>.Error(validationAppResult.Erros.ToList()));
         }
 
         [Route("{id}"), HttpPut]
