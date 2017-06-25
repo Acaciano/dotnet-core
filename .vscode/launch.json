@@ -38,13 +38,6 @@
             }
         },
         {
-            "name": "Launch localhost chrome",
-            "type": "chrome",
-            "request": "launch",
-            "url": "http://localhost:5000",
-            "webRoot": "${workspaceRoot}/wwwroot"
-        },
-        {
             "name": ".NET Core Attach",
             "type": "coreclr",
             "request": "attach",
